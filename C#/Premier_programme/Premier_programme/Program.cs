@@ -21,16 +21,17 @@ namespace Premier_programme
                 try
                 {
                     age = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Bonjour, vous vous appelez " + nom + ", vous avez " + age + " ans.");
-                    age += 1;
-                    Console.WriteLine("Bientôt vous aurez " + age + " ans");
+                   
                 }
                 catch
                 {
                     Console.WriteLine("Erreur. Vous devez entrer un âge valide.");
                 }
             }
-            
+            Console.WriteLine("Bonjour, vous vous appelez " + nom + ", vous avez " + age + " ans.");
+            age += 1;
+            Console.WriteLine("Bientôt vous aurez " + age + " ans");
+
             /* FIN PROGRAMME */
         }
     }
