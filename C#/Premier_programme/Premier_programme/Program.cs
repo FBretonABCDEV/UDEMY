@@ -17,9 +17,9 @@ namespace Premier_programme
             nom = Console.ReadLine();
             while(age <= 0)
             {
+                Console.WriteLine("Quel ton âge ?");
                 try
                 {
-                    Console.WriteLine("Quel ton âge ?");
                     age = int.Parse(Console.ReadLine());
                     Console.WriteLine("Bonjour, vous vous appelez " + nom + ", vous avez " + age + " ans.");
                     age += 1;
