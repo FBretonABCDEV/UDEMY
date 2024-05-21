@@ -9,59 +9,39 @@ namespace Jeux_de_maths
 
             /* VARIABLES */
 
-            int nb1 = 0, nb2 = 0, result = 0, reponseValide = 0; ;
+            const int QUESTIONS_MAX = 5;
+
+            int nb1 = 0, nb2 = 0, result = 0, reponseValide = 0, numQuestion = 0;
             String operateur = "";
 
             /* DEBUT PROGRAMME */
 
-            //Afficher la question 1
-            Console.WriteLine("Question n°1/5 :");
-
-            //cas 1 operateur -> +
-            operateur = " + ";
-            nb1 = 8; nb2 = 4; result = 0;
-            result = nb1 + nb2;
-
-            //Demander résultat
-            Console.Write(nb1 + operateur + nb2 +" = ");
-            int nbUtilisateur = int.Parse(Console.ReadLine());
-
-            //Valider la réponse
-            if(nbUtilisateur == result)
+            for(numQuestion = 1; numQuestion <= QUESTIONS_MAX; numQuestion++)
             {
-                Console.WriteLine("Bonne réponse");
-                reponseValide += 1;
+                //Afficher la question
+                Console.WriteLine("Question n°" + numQuestion + "/" + QUESTIONS_MAX + " :");
+
+                //cas 1 operateur -> +
+                operateur = " + ";
+                nb1 = 8; nb2 = 4; result = 0;
+                result = nb1 + nb2;
+
+                //Demander résultat
+                Console.Write(nb1 + operateur + nb2 + " = ");
+                int nbUtilisateur = int.Parse(Console.ReadLine());
+
+                //Valider la réponse
+                if (nbUtilisateur == result)
+                {
+                    Console.WriteLine("Bonne réponse.\n");
+                    reponseValide += 1;
+                }
+                else
+                {
+                    Console.WriteLine("Mauvaise réponse.\n");
+                }
             }
-            else
-            {
-                Console.WriteLine("Mauvaise réponse.");
-            }
-
-            //Afficher la question 2
-            Console.WriteLine("Question n°2/5 :");
-
-            //cas 2 operateur -> -
-            operateur = " - ";
-            nb1 = 8; nb2 = 4; result = 0;
-            result = nb1 - nb2;
-
-            //Demander résultat
-            Console.Write(nb1 + operateur + nb2 + " = ");
-            nbUtilisateur = int.Parse(Console.ReadLine());
-
-            //Valider la réponse
-            if (nbUtilisateur == result)
-            {
-                Console.WriteLine("Bonne réponse");
-                reponseValide += 1;
-            }
-            else
-            {
-                Console.WriteLine("Mauvaise réponse.");
-            }
-
-            //Afficher nombre bonnes réponses
-            Console.WriteLine("nombre de bonne(s) réponse(s) : "+reponseValide);
+            Console.WriteLine("Nombre de points : "+reponseValide+" / "+QUESTIONS_MAX);
 
             /* FIN PROGRAMME */
         }
