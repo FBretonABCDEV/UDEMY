@@ -6,7 +6,7 @@ namespace Jeux_de_maths
     {
         /* FONCTIONS */
 
-        static int GenererOperation()
+        static int GenererOperation(int _min, int _max)
         {
             Random nbAleatoire = new Random();
             bool operationInvalide = false;
@@ -14,8 +14,8 @@ namespace Jeux_de_maths
             int nb1, nb2, op, result = 0;
             do
             {
-                nb1 = nbAleatoire.Next(1, 10);
-                nb2 = nbAleatoire.Next(1, 10);
+                nb1 = nbAleatoire.Next(_min, _max+1);
+                nb2 = nbAleatoire.Next(_min, _max+1);
                 op = nbAleatoire.Next(4);
 
                 switch (op)
@@ -102,6 +102,10 @@ namespace Jeux_de_maths
             {
                 Console.WriteLine("Excellent !");
             }
+            else if (_nbPoints == 0)
+            {
+                Console.WriteLine("Révisez vos maths !");
+            }
             else if (_nbPoints == _questionMax / 2)
             {
                 Console.WriteLine("C'est pas mal");
@@ -120,7 +124,9 @@ namespace Jeux_de_maths
         {
             /* CONSTRANTES */
 
-            const int QUESTIONS_MAX = 5;
+            const int QUESTIONS_MAX = 8;
+            const int NOMBRE_MIN = 1;
+            const int NOMBRE_MAX = 10;
 
             /* VARIABLES */
 
@@ -133,7 +139,7 @@ namespace Jeux_de_maths
 
 
                 //Générer et afficher opération
-                result = GenererOperation();
+                result = GenererOperation(NOMBRE_MIN, NOMBRE_MAX);
 
                 //Demander un résultat au joueur
                 reponseJoueur = DemanderResultat();
