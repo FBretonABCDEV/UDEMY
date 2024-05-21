@@ -59,7 +59,7 @@ namespace Nombre_magique
             int nbJoueur;
             int nbMagique;
             int nbAleatoireMin = 1;
-            int nbAleatoireMax = 10;
+            int nbAleatoireMax = 100;
             int nbVie = 5;
             bool finPartie = false;
             int message = 0;
@@ -76,7 +76,7 @@ namespace Nombre_magique
             do
             {
                 //Demander un nombre entre entre 1 et 10
-                nbJoueur = DemanderNombre(int nbAleatoireMin,int nbAleatoireMax);
+                nbJoueur = DemanderNombre(nbAleatoireMin, nbAleatoireMax);
                 nbVie -= 1;
 
                 //Déterminer le résultat
