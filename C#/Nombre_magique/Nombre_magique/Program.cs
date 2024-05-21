@@ -8,8 +8,7 @@ namespace Nombre_magique
         static int DemanderNombre()
         {
             int nbUtilisateur = 0;
-            bool nbValide = false;
-            while(!nbValide)
+            while(nbUtilisateur == 0)
             {
                 try
                 {
@@ -17,10 +16,7 @@ namespace Nombre_magique
                     if (nbUtilisateur < 1 || nbUtilisateur > 10)
                     {
                         Console.WriteLine("Vous devez entrer un nombre valide.\n");
-                    }
-                    else
-                    {
-                        nbValide = true;
+                        nbUtilisateur = 0;
                     }
                 }
                 catch
