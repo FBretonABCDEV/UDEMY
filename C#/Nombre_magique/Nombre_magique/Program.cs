@@ -62,8 +62,8 @@ namespace Nombre_magique
 
             int nbJoueur;
             int nbMagique;
-            int nbAleatoireMin = 1;
-            int nbAleatoireMax = 10;
+            int nbAleatoireMin = 1;  //Valeur Min du random : inclusif 1 <- 1
+            int nbAleatoireMax = 11; //Valeur Max du random : exclusif 10 <- 11-1
             int nbVie = 5;
             bool finPartie = false;
             int message = 0;
