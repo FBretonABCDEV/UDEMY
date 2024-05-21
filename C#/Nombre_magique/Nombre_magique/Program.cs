@@ -5,7 +5,7 @@ namespace Nombre_magique
     public class program
     {
         /* FONCTIONS */
-        static int DemanderNombre(int nbAleatoireMin, int nbAleatoireMax)
+        static int DemanderNombre(int _nbAleatoireMin, int _nbAleatoireMax)
         {
             int nbUtilisateur = 0;
             while(nbUtilisateur == 0)
@@ -13,9 +13,9 @@ namespace Nombre_magique
                 try
                 {
                     nbUtilisateur = int.Parse(Console.ReadLine());
-                    if (nbUtilisateur < nbAleatoireMin || nbUtilisateur > nbAleatoireMax)
+                    if (nbUtilisateur < _nbAleatoireMin || nbUtilisateur > _nbAleatoireMax)
                     {
-                        Console.WriteLine("Vous devez entrer un nombre entre " + nbAleatoireMin +" et "+ nbAleatoireMax +" :\n");
+                        Console.WriteLine("Vous devez entrer un nombre entre " + _nbAleatoireMin +" et "+ _nbAleatoireMax +" :\n");
                         nbUtilisateur = 0;
                     }
                 }
@@ -27,15 +27,15 @@ namespace Nombre_magique
             }
             return nbUtilisateur;
         }
-        static void AfficherResultat(int message, int nbMin, int nbMax, int vie)
+        static void AfficherResultat(int _message, int _nbMin, int _nbMax, int _vie)
         {
-            switch (message)
+            switch (_message)
             {
                 case 1:
-                    Console.WriteLine("Le nombre magique est compris entre " + nbMin + " et " + nbMax + ".\n");
+                    Console.WriteLine("Le nombre magique est compris entre " + _nbMin + " et " + _nbMax + ".\n");
                     break;
                 case 2:
-                    Console.WriteLine("le nombre magique est compris entre " + nbMin + " et " + nbMax + ".\n");
+                    Console.WriteLine("le nombre magique est compris entre " + _nbMin + " et " + _nbMax + ".\n");
                     break;
                 case 3:
                     Console.WriteLine("bravo, vous avez trouvé le nombre magique !\n");
@@ -48,7 +48,7 @@ namespace Nombre_magique
                     break;
             }
             //Afficher nombres de vies
-            Console.WriteLine("Il vous reste : " + vie + " vie(s)\n");
+            Console.WriteLine("Il vous reste : " + _vie + " vie(s)\n");
         }
 
         /* FONCTION PRINCIPALE */
@@ -59,7 +59,7 @@ namespace Nombre_magique
             int nbJoueur;
             int nbMagique;
             int nbAleatoireMin = 1;
-            int nbAleatoireMax = 100;
+            int nbAleatoireMax = 10;
             int nbVie = 5;
             bool finPartie = false;
             int message = 0;
