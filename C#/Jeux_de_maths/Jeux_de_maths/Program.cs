@@ -9,34 +9,55 @@ namespace Jeux_de_maths
         static int GenererOperation()
         {
             Random nbAleatoire = new Random();
-
+            bool operationInvalide = false;
             string operateur = " + ";
-            int nb1 = nbAleatoire.Next(1, 10);
-            int nb2 = nbAleatoire.Next(1, 10);
-            int op = nbAleatoire.Next(4);
-            int result = 0;
-
-            switch (op)
+            int nb1, nb2, op, result = 0;
+            do
             {
-                case 0:
-                    result = nb1 + nb2;
-                    operateur = " + ";
-                    break;
-                case 1:
-                    result = nb1 - nb2;
-                    operateur = " - ";
-                    break;
-                case 2:
-                    result = nb1 * nb2;
-                    operateur = " * ";
-                    break;
-                case 3:
-                    result = nb1 / nb2;
-                    operateur = " / ";
-                    break;
-                default:
-                    break;
-            }
+                nb1 = nbAleatoire.Next(1, 10);
+                nb2 = nbAleatoire.Next(1, 10);
+                op = nbAleatoire.Next(4);
+
+                switch (op)
+                {
+                    case 0:
+                        result = nb1 + nb2;
+                        operateur = " + ";
+                        break;
+                    case 1:
+                        result = nb1 - nb2;
+                        operateur = " - ";
+                        if(result < 0)
+                        {
+                            operationInvalide = true;
+                        }
+                        else
+                        {
+                            operationInvalide = false;
+                        }
+                        break;
+                    case 2:
+                        result = nb1 * nb2;
+                        operateur = " * ";
+                        break;
+                    case 3:
+                        if (nb1 % nb2 != 0)
+                        {
+                            operationInvalide = true;
+                        }
+                        else
+                        {
+                            result = nb1 / nb2;
+                            operateur = " / ";
+                            operationInvalide = false;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("ERREUR : Opération non générer.");
+                        break;
+                }
+            } while (operationInvalide);
+            
             Console.Write(nb1 + operateur + nb2 + " = ");
             return result;
         }
