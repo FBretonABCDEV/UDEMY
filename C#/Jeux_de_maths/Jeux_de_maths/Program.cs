@@ -4,6 +4,12 @@ namespace Jeux_de_maths
 {
     class Program
     {
+        enum choix_operation
+        {
+            ADDITION = 1, SOUSTRACTION = 2, MULTIPLICATION = 3, DIVISION = 4
+
+        }
+
         /* FONCTIONS */
 
         static int GenererOperation(int _min, int _max)
@@ -11,20 +17,21 @@ namespace Jeux_de_maths
             Random nbAleatoire = new Random();
             bool operationInvalide = false;
             string operateur = " + ";
-            int nb1, nb2, op, result = 0;
+            int nb1, nb2, result = 0;
+            choix_operation op;
             do
             {
                 nb1 = nbAleatoire.Next(_min, _max+1);
                 nb2 = nbAleatoire.Next(_min, _max+1);
-                op = nbAleatoire.Next(4);
+                op = (choix_operation)nbAleatoire.Next(1,5);
 
                 switch (op)
                 {
-                    case 0:
+                    case choix_operation.ADDITION:
                         result = nb1 + nb2;
                         operateur = " + ";
                         break;
-                    case 1:
+                    case choix_operation.SOUSTRACTION:
                         result = nb1 - nb2;
                         operateur = " - ";
                         if(result < 0)
@@ -36,11 +43,11 @@ namespace Jeux_de_maths
                             operationInvalide = false;
                         }
                         break;
-                    case 2:
+                    case choix_operation.MULTIPLICATION:
                         result = nb1 * nb2;
                         operateur = " * ";
                         break;
-                    case 3:
+                    case choix_operation.DIVISION:
                         if (nb1 % nb2 != 0)
                         {
                             operationInvalide = true;
