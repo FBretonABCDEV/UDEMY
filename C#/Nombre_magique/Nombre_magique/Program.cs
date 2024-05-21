@@ -62,8 +62,8 @@ namespace Nombre_magique
 
             int nbJoueur;
             int nbMagique;
-            int nbAleatoireMin = 1;  //Valeur Min du random : inclusif 1 <- 1
-            int nbAleatoireMax = 11; //Valeur Max du random : exclusif 10 <- 11-1
+            int nbAleatoireMin = 1;
+            int nbAleatoireMax = 10;
             int nbVie = 5;
             bool finPartie = false;
             int message = 0;
@@ -72,7 +72,7 @@ namespace Nombre_magique
 
             //Définir nombre entier aleatoire entre 1 et 10
             Random nbAleatoire = new Random();
-            nbMagique = nbAleatoire.Next(nbAleatoireMin, nbAleatoireMax);
+            nbMagique = nbAleatoire.Next(nbAleatoireMin, nbAleatoireMax+1); //Valeur du random min inclusif, max : exclusif 10 <- 11-1
             Console.WriteLine(nbMagique);
             Console.WriteLine("LE NOMBRE MAGIQUE\n\nVous avez "+ nbVie +" vies.\nEntrer un nombre entre " + nbAleatoireMin +
                               " et "+ nbAleatoireMax +" :\n");
