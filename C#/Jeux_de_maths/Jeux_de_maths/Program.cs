@@ -169,8 +169,6 @@ namespace Jeux_de_maths
             //Commencer le questionnaire
             Commencer();
             
-            
-
             /* FIN PROGRAMME */
         }
     }
