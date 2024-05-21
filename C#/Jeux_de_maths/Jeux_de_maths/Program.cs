@@ -87,7 +87,7 @@ namespace Jeux_de_maths
             if (_reponseJoueur == _result)
             {
                 Console.WriteLine("Bonne réponse.\n");
-                nbPoints += 1;
+                nbPoints = 1;
             }
             else
             {
@@ -116,9 +116,7 @@ namespace Jeux_de_maths
             }
         }
 
-
-        /* FONCTIONS PRINCIPALE */
-        public static void Main(String[] args)
+        static void Commencer()
         {
             /* CONSTRANTES */
 
@@ -126,11 +124,8 @@ namespace Jeux_de_maths
 
             /* VARIABLES */
 
-            int reponseJoueur = 0, result = 0,  nbPoints = 0, numQuestion = 0;
+            int reponseJoueur = 0, result = 0, score = 0, numQuestion = 0;
 
-            /* DEBUT PROGRAMME */
-
-            //Commencer le questionnaire
             for (numQuestion = 1; numQuestion <= QUESTIONS_MAX; numQuestion++)
             {
                 //Afficher le numéro de question
@@ -144,11 +139,24 @@ namespace Jeux_de_maths
                 reponseJoueur = DemanderResultat();
 
                 //Calculer nombre de points
-                nbPoints = CalculerPoints(reponseJoueur, result);
+                score += CalculerPoints(reponseJoueur, result);
             }
 
             //Afficher le score
-            AfficherScore(nbPoints, QUESTIONS_MAX);
+            AfficherScore(score, QUESTIONS_MAX);
+        }
+
+
+        /* FONCTIONS PRINCIPALE */
+        public static void Main(String[] args)
+        {
+
+            /* DEBUT PROGRAMME */
+
+            //Commencer le questionnaire
+            Commencer();
+            
+            
 
             /* FIN PROGRAMME */
         }

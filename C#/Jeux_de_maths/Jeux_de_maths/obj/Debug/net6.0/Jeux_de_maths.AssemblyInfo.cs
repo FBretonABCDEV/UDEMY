@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jeux_de_maths")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1930b4bf53330caad067f6f354937e135e7be09f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd77abccb4f07c552ab92eca9e943fc80045785a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jeux_de_maths")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jeux_de_maths")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
