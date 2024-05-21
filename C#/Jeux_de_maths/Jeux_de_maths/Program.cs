@@ -121,17 +121,21 @@ namespace Jeux_de_maths
 
             //Afficher le score
             Console.WriteLine("Nombre de points : "+nbPoints+" / "+QUESTIONS_MAX);
-            if(nbPoints == QUESTIONS_MAX / 2)
+            if (nbPoints == QUESTIONS_MAX)
             {
-                Console.WriteLine("Pas mal");
+                Console.WriteLine("Excellent !");
             }
-            if (nbPoints < QUESTIONS_MAX / 2)
+            else if (nbPoints == QUESTIONS_MAX / 2)
+            {
+                Console.WriteLine("C'est pas mal");
+            }
+            else if (nbPoints < QUESTIONS_MAX / 2)
             {
                 Console.WriteLine("Essayer de faire mieux la prochaine.");
             }
-            if (nbPoints > QUESTIONS_MAX / 2)
+            else if (nbPoints > QUESTIONS_MAX / 2)
             {
-                Console.WriteLine("Excellent");
+                Console.WriteLine("Pas mal.");
             }
 
             /* FIN PROGRAMME */
