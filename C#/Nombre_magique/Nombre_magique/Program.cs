@@ -5,7 +5,7 @@ namespace Nombre_magique
     public class program
     {
         /* FONCTIONS */
-        static int DemanderNombre()
+        static int DemanderNombre(int nbAleatoireMin, int nbAleatoireMax)
         {
             int nbUtilisateur = 0;
             while(nbUtilisateur == 0)
@@ -13,9 +13,9 @@ namespace Nombre_magique
                 try
                 {
                     nbUtilisateur = int.Parse(Console.ReadLine());
-                    if (nbUtilisateur < 1 || nbUtilisateur > 10)
+                    if (nbUtilisateur < nbAleatoireMin || nbUtilisateur > nbAleatoireMax)
                     {
-                        Console.WriteLine("Vous devez entrer un nombre valide.\n");
+                        Console.WriteLine("Vous devez entrer un nombre entre " + nbAleatoireMin +" et "+ nbAleatoireMax +" :\n");
                         nbUtilisateur = 0;
                     }
                 }
@@ -76,7 +76,7 @@ namespace Nombre_magique
             do
             {
                 //Demander un nombre entre entre 1 et 10
-                nbJoueur = DemanderNombre();
+                nbJoueur = DemanderNombre(int nbAleatoireMin,int nbAleatoireMax);
                 nbVie -= 1;
 
                 //Déterminer le résultat
