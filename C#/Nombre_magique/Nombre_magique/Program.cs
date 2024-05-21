@@ -7,8 +7,9 @@ namespace Nombre_magique
         /* FONCTIONS */
         static int DemanderNombre(int _nbAleatoireMin, int _nbAleatoireMax)
         {
+            bool nbValide = false;
             int nbUtilisateur = 0;
-            while(nbUtilisateur == 0)
+            while(!nbValide)
             {
                 try
                 {
@@ -16,7 +17,10 @@ namespace Nombre_magique
                     if (nbUtilisateur < _nbAleatoireMin || nbUtilisateur > _nbAleatoireMax)
                     {
                         Console.WriteLine("Vous devez entrer un nombre entre " + _nbAleatoireMin +" et "+ _nbAleatoireMax +" :\n");
-                        nbUtilisateur = 0;
+                    }
+                    else
+                    {
+                        nbValide = true;
                     }
                 }
                 catch
