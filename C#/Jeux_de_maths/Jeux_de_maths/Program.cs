@@ -80,7 +80,42 @@ namespace Jeux_de_maths
             
             return nbUtilisateur;
         }
-        
+
+        static int CalculerPoints(int _reponseJoueur, int _result)
+        {
+            int nbPoints = 0;
+            if (_reponseJoueur == _result)
+            {
+                Console.WriteLine("Bonne réponse.\n");
+                nbPoints += 1;
+            }
+            else
+            {
+                Console.WriteLine("Mauvaise réponse.\n");
+            }
+            return nbPoints;
+        }
+        static void AfficherScore(int _nbPoints, int _questionMax)
+        {
+            Console.WriteLine("Nombre de points : " + _nbPoints + " / " + _questionMax);
+            if (_nbPoints == _questionMax)
+            {
+                Console.WriteLine("Excellent !");
+            }
+            else if (_nbPoints == _questionMax / 2)
+            {
+                Console.WriteLine("C'est pas mal");
+            }
+            else if (_nbPoints < _questionMax / 2)
+            {
+                Console.WriteLine("Essayer de faire mieux la prochaine.");
+            }
+            else if (_nbPoints > _questionMax / 2)
+            {
+                Console.WriteLine("Pas mal.");
+            }
+        }
+
 
         /* FONCTIONS PRINCIPALE */
         public static void Main(String[] args)
@@ -95,6 +130,7 @@ namespace Jeux_de_maths
 
             /* DEBUT PROGRAMME */
 
+            //Commencer le questionnaire
             for (numQuestion = 1; numQuestion <= QUESTIONS_MAX; numQuestion++)
             {
                 //Afficher le numéro de question
@@ -108,35 +144,11 @@ namespace Jeux_de_maths
                 reponseJoueur = DemanderResultat();
 
                 //Calculer nombre de points
-                if (reponseJoueur == result)
-                {
-                    Console.WriteLine("Bonne réponse.\n");
-                    nbPoints += 1;
-                }
-                else
-                {
-                    Console.WriteLine("Mauvaise réponse.\n");
-                }
+                nbPoints = CalculerPoints(reponseJoueur, result);
             }
 
             //Afficher le score
-            Console.WriteLine("Nombre de points : "+nbPoints+" / "+QUESTIONS_MAX);
-            if (nbPoints == QUESTIONS_MAX)
-            {
-                Console.WriteLine("Excellent !");
-            }
-            else if (nbPoints == QUESTIONS_MAX / 2)
-            {
-                Console.WriteLine("C'est pas mal");
-            }
-            else if (nbPoints < QUESTIONS_MAX / 2)
-            {
-                Console.WriteLine("Essayer de faire mieux la prochaine.");
-            }
-            else if (nbPoints > QUESTIONS_MAX / 2)
-            {
-                Console.WriteLine("Pas mal.");
-            }
+            AfficherScore(nbPoints, QUESTIONS_MAX);
 
             /* FIN PROGRAMME */
         }
