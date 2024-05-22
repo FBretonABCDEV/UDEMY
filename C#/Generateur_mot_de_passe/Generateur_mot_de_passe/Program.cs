@@ -31,7 +31,7 @@ namespace FormationCS
         static string GenererMotPasse()
         {
             //Demande choisir longueur mot de passe
-            int longueurMotPasse = outils.DemanderNombrePositifNonNul("longueur du mot de passe : ");
+            int longueurMotPasse = outils.DemanderNombrePositifNonNul("Longueur du mot de passe : ");
 
             //Différentes chaines des choix de caractères possible
             string alphabetMin = "abcdefghijklmnopqrstuvwxyz";
@@ -40,6 +40,7 @@ namespace FormationCS
             string caractereSpeciaux = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
             string alphabet = "";
 
+            //Choix des caractères du mot de passe
             bool ajouterMin = DemanderChoixBinaire("Mot de passe avec minuscules ?");
             if (ajouterMin)
             {
@@ -61,6 +62,7 @@ namespace FormationCS
                 alphabet += caractereSpeciaux;
             }
 
+            //Génération mot de passe
             string motDePasse = "";
             Random aleatoire = new Random();
             while(motDePasse.Length < longueurMotPasse)
@@ -78,13 +80,9 @@ namespace FormationCS
         /* FONCTION PRINCIPALE */
         static void Main(string[] args)
         {
-            //Demander la longueur du mot de passe
-            //Définir l'alphabet
-            //générer mot de passe
             bool quitter = false;
             while (!quitter)
             {
-                string quitterStr = "";
 
                 //Générer et afficher le mot de passe
                 string motDePasse = GenererMotPasse();
@@ -92,14 +90,13 @@ namespace FormationCS
 
                 //Continuer ou quitter
                 Console.WriteLine("Appuyer sur q pour quitter ou n'importe quelle touche pour continuer.");
-                quitterStr = Console.ReadLine();
+                string quitterStr = Console.ReadLine();
 
                 if (quitterStr.Equals("q", StringComparison.OrdinalIgnoreCase))
                 {
                     quitter = true;
                 }
             }
-
 
         }
     }
