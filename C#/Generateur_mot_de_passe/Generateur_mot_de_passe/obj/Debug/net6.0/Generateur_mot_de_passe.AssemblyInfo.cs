@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Generateur_mot_de_passe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+280f83a1ef57f4735efac4d4aeddd36e5ba4be7d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06825dbc43adfa4a8155c239f6b3d55ef0f3f812")]
 [assembly: System.Reflection.AssemblyProductAttribute("Generateur_mot_de_passe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Generateur_mot_de_passe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
