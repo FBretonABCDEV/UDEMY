@@ -20,6 +20,7 @@ namespace FormationCS
                     //Tester si valeur numérique
                     Console.Write(_question);
                     nombre = int.Parse(Console.ReadLine());
+                    Console.WriteLine();
                     return nombre;
                 }
                 catch

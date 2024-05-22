@@ -10,18 +10,21 @@ namespace FormationCS
         static bool DemanderChoixBinaire(string _question)
         {
             string choix = "";
-            Console.Write(_question);
+            Console.WriteLine(_question);
+            Console.Write("Entrer O pour oui ou N pour non : ");
             choix = Console.ReadLine();
-            if (choix.Equals("oui", StringComparison.OrdinalIgnoreCase))
+            Console.WriteLine();
+            if (choix.Equals("o", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
-            else if (choix.Equals("non", StringComparison.OrdinalIgnoreCase))
+            else if (choix.Equals("n", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
             else
             {
+                Console.WriteLine("ERREUR : Choix invalide.");
                 return DemanderChoixBinaire(_question);
             }
         }
@@ -30,10 +33,10 @@ namespace FormationCS
             string alphabet = "abcdefghijklmnopqrstuvwxyz0123456789 !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
             int longueurMotPasse = outils.DemanderNombrePositifNonNul("longueur du mot de passe : ");
 
-            bool ajouterMin = DemanderChoixBinaire("Mot de passe avec minuscules : ");
-            bool ajouterMaj = DemanderChoixBinaire("Mot de passe avec majuscules : ");
-            bool ajouterNb = DemanderChoixBinaire("Mot de passe avec nombres : ");
-            bool charSpeciaux = DemanderChoixBinaire("Mot de passe avec caractères spéciaux : ");
+            bool ajouterMin = DemanderChoixBinaire("Mot de passe avec minuscules ?");
+            bool ajouterMaj = DemanderChoixBinaire("Mot de passe avec majuscules ?");
+            bool ajouterNb = DemanderChoixBinaire("Mot de passe avec nombres ?");
+            bool charSpeciaux = DemanderChoixBinaire("Mot de passe avec caractères spéciaux ?");
 
             string motDePasse = "";
             Random aleatoire = new Random();
