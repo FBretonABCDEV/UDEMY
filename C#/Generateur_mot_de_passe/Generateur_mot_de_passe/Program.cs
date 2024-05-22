@@ -40,6 +40,11 @@ namespace Generateur_mot_de_passe
             }
         }
 
+        static int DemanderNombrePositifNonNul(string _question)
+        {
+            return DemanderNombreEntre(_question, 1 , int.MaxValue);
+        }
+
         /* FONCTION PRINCIPALE */
         static void Main(string[] args)
         {
@@ -48,6 +53,7 @@ namespace Generateur_mot_de_passe
             //générer mot de passe
 
             DemanderNombreEntre("Longueur du mot de passe : ", 5, 12);
+            DemanderNombrePositifNonNul("Choisir un nombre supérieur à 0 : ");
         }
     }
 }
