@@ -29,7 +29,7 @@ namespace FormationCS
                 }
             }
         }
-        public static int DemanderNombreEntre(string _question, int _min, int _max)
+        public static int DemanderNombreEntre(string _question, int _min, int _max, string _messageErreurPersonnalise)
         {
             int nombre = 0;
 
@@ -40,14 +40,21 @@ namespace FormationCS
             }
             else
             {
-                Console.WriteLine("Vous devez choisir un nombre entre " + _min + " et " + _max + ".");
-                return DemanderNombreEntre(_question, _min, _max);
+                if(_messageErreurPersonnalise != null)
+                {
+                    Console.WriteLine(_messageErreurPersonnalise);
+                }
+                else
+                {
+                    Console.WriteLine("Vous devez choisir un nombre entre " + _min + " et " + _max + ".");
+                }
+                return DemanderNombreEntre(_question, _min, _max, _messageErreurPersonnalise);
             }
         }
 
         public static int DemanderNombrePositifNonNul(string _question)
         {
-            return DemanderNombreEntre(_question, 1, int.MaxValue);
+            return DemanderNombreEntre(_question, 1, int.MaxValue, "ERREUR : Vous devez entrer un nombre positif non nul.");
         }
     }
 }

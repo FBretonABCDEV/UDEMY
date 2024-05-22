@@ -30,13 +30,36 @@ namespace FormationCS
         }
         static string GenererMotPasse()
         {
-            string alphabet = "abcdefghijklmnopqrstuvwxyz0123456789 !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            //Demande choisir longueur mot de passe
             int longueurMotPasse = outils.DemanderNombrePositifNonNul("longueur du mot de passe : ");
 
+            //Différentes chaines des choix de caractères possible
+            string alphabetMin = "abcdefghijklmnopqrstuvwxyz";
+            string alphabetMaj = alphabetMin.ToUpper();
+            string caractereNombre = "0123456789";
+            string caractereSpeciaux = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            string alphabet = "";
+
             bool ajouterMin = DemanderChoixBinaire("Mot de passe avec minuscules ?");
+            if (ajouterMin)
+            {
+                alphabet += alphabetMin;
+            }
             bool ajouterMaj = DemanderChoixBinaire("Mot de passe avec majuscules ?");
+            if (ajouterMaj)
+            {
+                alphabet += alphabetMaj;
+            }
             bool ajouterNb = DemanderChoixBinaire("Mot de passe avec nombres ?");
+            if (ajouterNb)
+            {
+                alphabet += caractereNombre;
+            }
             bool charSpeciaux = DemanderChoixBinaire("Mot de passe avec caractères spéciaux ?");
+            if (charSpeciaux)
+            {
+                alphabet += caractereSpeciaux;
+            }
 
             string motDePasse = "";
             Random aleatoire = new Random();
@@ -45,40 +68,8 @@ namespace FormationCS
                 for (int i = 0; i < longueurMotPasse; i++)
                 {
                     int nbAleatoire = aleatoire.Next(alphabet.Length);
-                    string caractere = alphabet[nbAleatoire].ToString();
-                    int aleatoireMaj = aleatoire.Next(11);
 
-                    if (nbAleatoire < 26)
-                    {
-                        if (ajouterMin && !ajouterMaj)
-                        {
-                            motDePasse += caractere;
-                        }
-                        if (ajouterMaj && !ajouterMin)
-                        {
-                            motDePasse += caractere.ToUpper();
-                        }
-                        if(ajouterMin && ajouterMaj)
-                        {
-                            if(aleatoireMaj%2 == 0)
-                            {
-                                motDePasse += caractere.ToUpper();
-                            }
-                            else
-                            {
-                                motDePasse += caractere;
-                            }
-                        }
-                    }
-                    
-                    if (nbAleatoire > 25 && nbAleatoire < 36 && ajouterNb)
-                    {
                         motDePasse += alphabet[nbAleatoire];
-                    }
-                    if (nbAleatoire > 35 && charSpeciaux)
-                    {
-                        motDePasse += alphabet[nbAleatoire];
-                    }
                 }
             }
             return motDePasse;
