@@ -9,7 +9,7 @@ namespace Collection
         {
             for (int i = 0; i < _tableau.Length; i++)
             {
-                Console.WriteLine(_tableau[i]);
+                Console.WriteLine("[" + i + "]" + "  " + _tableau[i]);
             }
         }
 
@@ -26,8 +26,7 @@ namespace Collection
             Random aleatoire = new Random();
             for (int i = 0; i < t.Length; i++)
             {
-                int nombre = aleatoire.Next(101);
-                t[i] = nombre;
+                t[i] = aleatoire.Next(101);
             }
             AfficherTableau(t);
         }
