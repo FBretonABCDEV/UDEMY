@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Collection
+namespace Tableaux
 {
     class Program
     {
@@ -60,3 +60,4 @@ namespace Collection
         }
     }
 }
+
