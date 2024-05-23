@@ -26,6 +26,19 @@ namespace Collection
             Console.WriteLine("Valeur maximale du tableau : " + valeurMax);
         }
 
+        static void AfficherValeurMinimale(int[] _tableau)
+        {
+            int valeurMin = _tableau[0];
+            for (int i = 0; i < _tableau.Length; i++)
+            {
+                if (_tableau[i] < valeurMin)
+                {
+                    valeurMin = _tableau[i];
+                }
+            }
+            Console.WriteLine("Valeur minimale du tableau : " + valeurMin);
+        }
+
         /* FONCTION PRINCIPALE */
         public static void Main(string[] args)
         {
@@ -43,6 +56,7 @@ namespace Collection
             }
             AfficherTableau(t);
             AfficherValeurMaximale(t);
+            AfficherValeurMinimale(t);
         }
     }
 }
