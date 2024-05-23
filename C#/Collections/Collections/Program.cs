@@ -13,6 +13,19 @@ namespace Collection
             }
         }
 
+        static void AfficherValeurMaximale(int[] _tableau)
+        {
+            int valeurMax = _tableau[0];
+            for (int i = 0; i < _tableau.Length; i++)
+            {
+                if (_tableau[i] > valeurMax)
+                {
+                    valeurMax = _tableau[i];
+                }
+            }
+            Console.WriteLine("Valeur maximale du tableau : " + valeurMax);
+        }
+
         /* FONCTION PRINCIPALE */
         public static void Main(string[] args)
         {
@@ -29,6 +42,7 @@ namespace Collection
                 t[i] = aleatoire.Next(101);
             }
             AfficherTableau(t);
+            AfficherValeurMaximale(t);
         }
     }
 }
