@@ -18,7 +18,7 @@ namespace BoucleForEach
             Console.WriteLine();
 
             //foreach list
-            string[] listeNoms = new string[] { "Laura", "Francis", "Justine", "Martin" };
+            List<string> listeNoms = new List<string> { "Laura", "Francis", "Justine", "Martin" };
             Console.WriteLine("[Liste]");
             foreach (var nom in listeNoms)
             {
