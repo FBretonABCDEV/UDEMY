@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using AsciiArt;
 
 namespace Jeu_du_pendu
 {
@@ -27,10 +29,14 @@ namespace Jeu_du_pendu
 
             while (viesRestantes > 0)
             {
+                Console.WriteLine(Ascii.PENDU[NB_VIES-viesRestantes]);
+                Console.WriteLine();
                 AfficherMot(_mot, lettresTrouvees);
                 Console.WriteLine();
+                
                 char lettreUtilisateur = DemanderUneLettre();
-                Console.Clear();
+
+                    Console.Clear();
                 if (_mot.Contains(lettreUtilisateur))
                 {
                     lettresTrouvees.Add(lettreUtilisateur);
@@ -42,15 +48,22 @@ namespace Jeu_du_pendu
                 }
                 else
                 {
-                    lettresInvalides.Add(lettreUtilisateur);
-                    viesRestantes--;
+                    if (!lettresInvalides.Contains(lettreUtilisateur))
+                    {
+                        lettresInvalides.Add(lettreUtilisateur);
+                        viesRestantes--;
+                    }
+                    
                     Console.WriteLine("Il vous reste : " + viesRestantes + " vie(s).");
                 }
-                Console.WriteLine("Le mot ne contient pas les lettres : " + string.Join(", ", lettresInvalides));
+                if(lettresInvalides.Count > 0)
+                {
+                    Console.WriteLine("Le mot ne contient pas les lettres : " + string.Join(", ", lettresInvalides));
+                }
                 Console.WriteLine();
             }
-            
-            if(viesRestantes == 0)
+            Console.WriteLine(Ascii.PENDU[NB_VIES - viesRestantes]);
+            if (viesRestantes == 0)
             {
                 Console.WriteLine("Perdu !");
                 Console.WriteLine("Le mot était : " + _mot);
