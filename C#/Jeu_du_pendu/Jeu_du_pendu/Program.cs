@@ -8,9 +8,37 @@ namespace Jeu_du_pendu
     {
         /* FONCTIONS */
 
+        static bool DemanderRejouer()
+        {
+            var reponse = ' ';
+            Console.Write("Voulez-vous rejouer ?(o/n) ");
+            reponse = DemanderUneLettre();
+            if (reponse == 'O' || reponse == 'o')
+            {
+                return true;
+            }
+            else if (reponse == 'N' || reponse == 'n')
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Erreur : vous devez entrer o(oui) ou n(non)");
+                return DemanderRejouer();
+            }
+        }
+
         static string[] ChargerLesMots(string _nomFichier)
         {
-            return File.ReadAllLines(_nomFichier);
+            try
+            {
+                return File.ReadAllLines(_nomFichier);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Erreur de lecture du fichier" + _nomFichier + " (" + ex.Message + ")");
+            }
+            return null;
         }
         static bool ToutesLettresTrouvees(string _mot, List<char> _lettresTrouvees)
         {
@@ -116,9 +144,25 @@ namespace Jeu_du_pendu
         /* FONCTION PRINCIPALE */
         public static void Main(string[] args)
         {
+            Random r = new Random();
             string[] mots = ChargerLesMots("mots.txt");
-            string mot = mots[0].Trim().ToUpper();
-            DevinerMot(mot);
+            if(mots == null || mots.Length == 0)
+            {
+                Console.WriteLine("La liste de mots est vide");
+            }
+            else
+            {
+                bool rejouer = false;
+                do
+                {
+                    var index = r.Next(mots.Length);
+                    string mot = mots[index].Trim().ToUpper();
+                    DevinerMot(mot);
+                    rejouer = DemanderRejouer();
+                    Console.Clear();
+                } while (rejouer);
+                Console.WriteLine("Fin de partie, à bientôt !");
+            }
         }
     }
 }
