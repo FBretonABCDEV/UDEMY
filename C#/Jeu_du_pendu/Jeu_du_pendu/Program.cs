@@ -8,6 +8,10 @@ namespace Jeu_du_pendu
     {
         /* FONCTIONS */
 
+        static string[] ChargerLesMots(string _nomFichier)
+        {
+            return File.ReadAllLines(_nomFichier);
+        }
         static bool ToutesLettresTrouvees(string _mot, List<char> _lettresTrouvees)
         {
             foreach(char lettre in _lettresTrouvees)
@@ -112,7 +116,8 @@ namespace Jeu_du_pendu
         /* FONCTION PRINCIPALE */
         public static void Main(string[] args)
         {
-            string mot = "ELEPHANT";
+            string[] mots = ChargerLesMots("mots.txt");
+            string mot = mots[0].Trim().ToUpper();
             DevinerMot(mot);
         }
     }
