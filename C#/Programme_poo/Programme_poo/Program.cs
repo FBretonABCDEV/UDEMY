@@ -56,7 +56,6 @@ namespace programme_poo
             listeCivile.Add(new Personne("Edouard", 28, "Mécanicien"));
             listeCivile.Add(new Personne("Nathalie", 42, "Secrétaire"));
             listeCivile.Add(new Personne("Pauline", 36, "Médecin"));
-
         }
     }
 }
