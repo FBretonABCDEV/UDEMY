@@ -8,10 +8,10 @@ namespace programme_poo
     class Personne
     {
         //Variable de class
-        public static int nombrePersonnes;//static variable commune à toutes les instances
+        private static int nombrePersonnes;//static variable commune à toutes les instances
 
         //variable d'instance
-        public string nom;
+        public string nom;//pour l'exercice -> public. Une variable d'instance doit être private
         private int age;
         private string emploi;
         private int numeroPersonne = 0;
@@ -28,6 +28,13 @@ namespace programme_poo
             this.numeroPersonne = nombrePersonnes;
         }
 
+        //Méthodes static (utiliser avec la class Personne.AfficherPersonnes();)
+        public static void AfficherNombrePersonnes()
+        {
+            Console.WriteLine("Nombre total de personnes : " + nombrePersonnes);
+        }
+
+        //méthodes
         public void Afficher()
         {
             Console.WriteLine("Personne N° " + numeroPersonne);
@@ -80,7 +87,8 @@ namespace programme_poo
                 element.Afficher();
                 Console.WriteLine();
             }
-            Console.WriteLine("Nombre total de personnes : " + Personne.nombrePersonnes);
+
+            Personne.AfficherNombrePersonnes();
         }
     }
 }
