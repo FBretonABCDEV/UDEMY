@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace programme_poo
 {
@@ -9,11 +10,11 @@ namespace programme_poo
         int age;
         string emploi;
 
-        public Personne(string nom, int age, string emploi)
+        public Personne(string _nom, int _age, string _emploi)
         {
-            this.nom = nom;
-            this.age = age;
-            this.emploi = emploi;
+            this.nom = _nom;
+            this.age = _age;
+            this.emploi = _emploi;
         }
 
         public void Afficher()
@@ -51,7 +52,10 @@ namespace programme_poo
             Personne personne2 = new Personne("Jacques", 35, "Professeur");
             personne2.Afficher();
 
-
+            List<Personne> listeCivile = new List<Personne>();
+            listeCivile.Add(new Personne("Edouard", 28, "Mécanicien"));
+            listeCivile.Add(new Personne("Nathalie", 42, "Secrétaire"));
+            listeCivile.Add(new Personne("Pauline", 36, "Médecin"));
 
         }
     }
