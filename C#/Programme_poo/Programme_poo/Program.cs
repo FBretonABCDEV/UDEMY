@@ -52,10 +52,18 @@ namespace programme_poo
             Personne personne2 = new Personne("Jacques", 35, "Professeur");
             personne2.Afficher();
 
+            //liste de Class Personne
             List<Personne> listeCivile = new List<Personne>();
             listeCivile.Add(new Personne("Edouard", 28, "Mécanicien"));
             listeCivile.Add(new Personne("Nathalie", 42, "Secrétaire"));
             listeCivile.Add(new Personne("Pauline", 36, "Médecin"));
+            listeCivile.Add(new Personne("jean", 36, "Plombier"));
+
+            //Afficher chaque personne de la liste
+            foreach(Personne element in listeCivile)
+            {
+                element.Afficher();
+            }
         }
     }
 }
