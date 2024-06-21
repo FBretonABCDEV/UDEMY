@@ -11,13 +11,13 @@ namespace programme_poo
         private static int nombrePersonnes;//static variable commune à toutes les instances
 
         //variable d'instance
-        public string nom;//pour l'exercice -> public. Une variable d'instance doit être private
+        private string nom;//pour l'exercice -> public. Une variable d'instance doit être private
         private int age;
         private string emploi;
         private int numeroPersonne = 0;
 
-        //Constructeur
-        public Personne(string _nom, int _age, string _emploi)
+        //Constructeurs
+        public Personne(string _nom, int _age, string _emploi = null)
         {
             this.nom = _nom;
             this.age = _age;
@@ -27,6 +27,12 @@ namespace programme_poo
 
             this.numeroPersonne = nombrePersonnes;
         }
+
+        /*Constructeur qui fait référence au premier. Dernier paramètre modifié.
+        public Personne(string _nom, int _age) : this(_nom, _age, "non spécifié")
+        {
+
+        }*/
 
         //Méthodes static (utiliser avec la class Personne.AfficherPersonnes();)
         public static void AfficherNombrePersonnes()
@@ -40,7 +46,20 @@ namespace programme_poo
             Console.WriteLine("Personne N° " + numeroPersonne);
             Console.WriteLine("NOM : " + nom);
             Console.WriteLine("  AGE : " + age + " ans");
-            Console.WriteLine("  EMPLOI : " + emploi);
+            if(this.emploi == null)
+            {
+                Console.WriteLine("non spécifié");
+            }
+            else
+            {
+                Console.WriteLine("  EMPLOI : " + emploi);
+            }
+        }
+
+        //getters et setters
+        public string GetNom()
+        {
+            return this.nom;
         }
     }
 
@@ -77,12 +96,14 @@ namespace programme_poo
             listeCivile.Add(new Personne("Nathalie", 42, "Secrétaire"));
             listeCivile.Add(new Personne("Pauline", 18, "Etudiant"));
             listeCivile.Add(new Personne("Nicolas", 8, "CP"));
+            listeCivile.Add(new Personne("juliette", 24));
+            listeCivile.Add(new Personne("lucas", 21));
 
             //Trier par nom
-            //listeCivile = listeCivile.OrderBy(p => p.nom).ToList();
+            listeCivile = listeCivile.OrderBy(p => p.GetNom()).ToList();
 
             //Afficher chaque personne de la liste
-            foreach(Personne element in listeCivile)
+            foreach (Personne element in listeCivile)
             {
                 element.Afficher();
                 Console.WriteLine();
