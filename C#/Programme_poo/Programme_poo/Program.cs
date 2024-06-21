@@ -11,21 +11,22 @@ namespace programme_poo
         private static int nombrePersonnes;//static variable commune à toutes les instances
 
         //variable d'instance
-        private string nom;//pour l'exercice -> public. Une variable d'instance doit être private
-        private int age;
-        private string emploi;
+        public string nom { get; init; }//propriété avec initialisation (définitive) à la construction
+        public int age { get; set; }
+        public string emploi { get; set; }
         private int numeroPersonne = 0;
 
         //Constructeurs
-        public Personne(string _nom, int _age, string _emploi = null)
+        public Personne()
+        {
+            nombrePersonnes++;
+            this.numeroPersonne = nombrePersonnes;
+        }
+        public Personne(string _nom, int _age, string _emploi = null) : this()//On utilise le constructeur par défault et celui avec paramètres.
         {
             this.nom = _nom;
             this.age = _age;
             this.emploi = _emploi;
-
-            nombrePersonnes++;
-
-            this.numeroPersonne = nombrePersonnes;
         }
 
         /*Constructeur qui fait référence au premier. Dernier paramètre modifié.
@@ -44,11 +45,11 @@ namespace programme_poo
         public void Afficher()
         {
             Console.WriteLine("Personne N° " + numeroPersonne);
-            Console.WriteLine("NOM : " + nom);
+            Console.WriteLine("  NOM : " + nom);
             Console.WriteLine("  AGE : " + age + " ans");
             if(this.emploi == null)
             {
-                Console.WriteLine("non spécifié");
+                Console.WriteLine("  non spécifié");
             }
             else
             {
@@ -56,11 +57,16 @@ namespace programme_poo
             }
         }
 
-        //getters et setters
+        /*getters et setters
         public string GetNom()
         {
             return this.nom;
         }
+
+        public void SetNom(string _nom)
+        {
+            this.nom = _nom;
+        }*/
     }
 
     class Program
@@ -98,9 +104,10 @@ namespace programme_poo
             listeCivile.Add(new Personne("Nicolas", 8, "CP"));
             listeCivile.Add(new Personne("juliette", 24));
             listeCivile.Add(new Personne("lucas", 21));
+            listeCivile.Add(new Personne() { age = 28, nom = "pierre", emploi = "Développeur"});// init attribut nom ne pourra plus être modifié avec setter
 
             //Trier par nom
-            listeCivile = listeCivile.OrderBy(p => p.GetNom()).ToList();
+            listeCivile = listeCivile.OrderBy(p => p.nom).ToList();
 
             //Afficher chaque personne de la liste
             foreach (Personne element in listeCivile)
