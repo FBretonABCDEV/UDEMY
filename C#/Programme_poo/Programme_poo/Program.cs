@@ -12,7 +12,23 @@ namespace programme_poo
 
         //variable d'instance
         public string nom { get; init; }//propriété avec initialisation (définitive) à la construction
-        public int age { get; set; }
+
+        //les propriétés sont aussi utilisées comme fonctions. On déclare alors une variable _age pour stocker la valeur.
+        private int _age;
+        public int age 
+        { 
+            get
+            {
+                return _age;   
+            } 
+            set 
+            {
+                if(value >= 0)
+                {
+                    _age = value;
+                }
+            } 
+        }
         public string emploi { get; set; }
         private int numeroPersonne = 0;
 
@@ -22,11 +38,11 @@ namespace programme_poo
             nombrePersonnes++;
             this.numeroPersonne = nombrePersonnes;
         }
-        public Personne(string _nom, int _age, string _emploi = null) : this()//On utilise le constructeur par défault et celui avec paramètres.
+        public Personne(string nom, int age, string emploi = null) : this()//On utilise le constructeur par défault et celui avec paramètres.
         {
-            this.nom = _nom;
-            this.age = _age;
-            this.emploi = _emploi;
+            this.nom = nom;
+            this.age = age;
+            this.emploi = emploi;
         }
 
         /*Constructeur qui fait référence au premier. Dernier paramètre modifié.
@@ -104,10 +120,13 @@ namespace programme_poo
             listeCivile.Add(new Personne("Nicolas", 8, "CP"));
             listeCivile.Add(new Personne("juliette", 24));
             listeCivile.Add(new Personne("lucas", 21));
-            listeCivile.Add(new Personne() { age = 28, nom = "pierre", emploi = "Développeur"});// init attribut nom ne pourra plus être modifié avec setter
+            listeCivile.Add(new Personne() { age = 28, nom = "pierre", emploi = "Développeur"});// init, attribut nom ne pourra plus être modifié avec setter
 
             //Trier par nom
             listeCivile = listeCivile.OrderBy(p => p.nom).ToList();
+
+            //Modification age si age est positif
+            listeCivile[0].age = 29;
 
             //Afficher chaque personne de la liste
             foreach (Personne element in listeCivile)
