@@ -11,12 +11,14 @@ namespace programme_poo_1
         private string nom;
         private int age;
         public string classeEnfant { get; init; }
+        private Dictionary<string, float> notes;
 
         //Constructeur
-        public Enfant(string nom, int age) : base(nom, age, null)
+        public Enfant(string nom, int age, Dictionary<string, float> notes) : base(nom, age, null)
         {
             this.nom = nom;
             this.age = age;
+            this.notes = notes;
         }
 
         //Méthodes
@@ -24,6 +26,14 @@ namespace programme_poo_1
         {
             AfficherNomEtAge();
             Console.WriteLine("  Enfant en classe de : " + classeEnfant);
+            if ((notes != null) && (notes.Count > 0))
+            {
+                Console.WriteLine("Notes par matière : ");
+                foreach (var note in notes)
+                {
+                    Console.WriteLine("    " + note.Key + " : " + note.Value + "/10");
+                }
+            }
             AfficherProfesseurprincipal();
         }
     }
@@ -115,9 +125,15 @@ namespace programme_poo_1
             
             etudiant1.Afficher();
 
-            Enfant enfant1 = new Enfant("sophie", 7) 
+            Enfant enfant1 = new Enfant("sophie", 7, new Dictionary<string, float> ()
+                             { 
+                                { "mathématique", 9.5f }, 
+                                { "géographie", 6.8f }, 
+                                { "dictée", 4.5f }, 
+                                { "conjuguaison", 8.7f } 
+                             }) 
             { 
-                classeEnfant = "CP", professeurPrincipal = new Personne("Sylvie", 42, "Professeur de Mathématique")
+                classeEnfant = "CP", professeurPrincipal = new Personne("Sylvie", 42, "Professeur des Ecoles")
             };
 
             enfant1.Afficher();
