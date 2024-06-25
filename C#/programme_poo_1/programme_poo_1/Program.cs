@@ -5,10 +5,33 @@ using System.Linq;
 
 namespace programme_poo_1
 {
+    class Enfant : Etudiant
+    {
+        //Variables d'instance
+        private string nom;
+        private int age;
+        public string classeEnfant { get; init; }
+
+        //Constructeur
+        public Enfant(string nom, int age) : base(nom, age, null)
+        {
+            this.nom = nom;
+            this.age = age;
+        }
+
+        //Méthodes
+        public override void Afficher()
+        {
+            AfficherNomEtAge();
+            Console.WriteLine("  Enfant en classe de : " + classeEnfant);
+            AfficherProfesseurprincipal();
+        }
+    }
     class Etudiant : Personne
     {
         //Variables d'instance
         private string infoEtudiant;
+        public Personne professeurPrincipal { get; init; }
 
         //Constructeur
         public Etudiant(String nom, int age, string infoEtudiant) : base(nom, age)
@@ -21,8 +44,18 @@ namespace programme_poo_1
         {
             AfficherNomEtAge();
             Console.WriteLine("  Etudiant en : " + infoEtudiant);
+            AfficherProfesseurprincipal();
         }
-    }
+
+        protected void AfficherProfesseurprincipal()
+        {
+            if (professeurPrincipal != null)
+            {
+                Console.WriteLine("  Le professeur principal est : ");
+                professeurPrincipal.Afficher();
+            }
+        }
+}
     class Personne
     {
         //Variable de class
@@ -75,26 +108,19 @@ namespace programme_poo_1
     {
         static void Main(string[] args)
         {
-
-            //liste de Class Personne
-            List<Personne> listeCivile = new List<Personne>();
-            listeCivile.Add(new Personne("Edouard", 28, "Mécanicien"));
-            listeCivile.Add(new Personne("Nathalie", 42, "Secrétaire"));
-            listeCivile.Add(new Personne("Pauline", 18, "Etudiant"));
-            listeCivile.Add(new Personne("Nicolas", 8, "CP"));
-            listeCivile.Add(new Personne("juliette", 24));
-            listeCivile.Add(new Personne("lucas", 21));
-
-            listeCivile.Add(new Etudiant("David", 22, "Ecole d'informatique"));
-
-            //Afficher chaque personne de la liste
-            foreach (Personne element in listeCivile)
+            Etudiant etudiant1 = new Etudiant("Richard", 21, "Ecole d'ingénieur informatique")
             {
-                element.Afficher();
-                Console.WriteLine();
-            }
+                professeurPrincipal = new Personne("Greg", 38, "Professeur d'informatique")
+            };
+            
+            etudiant1.Afficher();
 
-            Personne.AfficherNombrePersonnes();
+            Enfant enfant1 = new Enfant("sophie", 7) 
+            { 
+                classeEnfant = "CP", professeurPrincipal = new Personne("Sylvie", 42, "Professeur de Mathématique")
+            };
+
+            enfant1.Afficher();
         }
     }
 }
