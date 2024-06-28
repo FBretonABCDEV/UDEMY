@@ -29,9 +29,30 @@ namespace projet_pizza_v1
 
                 //alternative notation condition if peu volumineuse
                 string vegan = vegetarienne ? " (V)" : "";
-
+                string nomAfficher = PremiereLettreMajuscule(this.nom);
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
-                Console.WriteLine(this.nom + vegan + " - " + prix + "€");
+                Console.WriteLine(nomAfficher + vegan + " - " + prix + "€");
+            }
+
+            private static string PremiereLettreMajuscule(string s)
+            {
+                /*Notation alternative condition string vide ou null
+                if(s == "" || s == null)
+                {
+                    return s;
+                }*/
+
+                if (string.IsNullOrEmpty(s))
+                {
+                    return s;
+                }
+
+                string majuscules = s.ToUpper();
+                string minuscules = s.ToLower();
+
+                //string resultat = majuscules[0] + minuscules.Substring(1); //Notation alternative tous caractères à partir de l'index
+                string resultat = majuscules[0] + minuscules[1..];
+                return resultat;
             }
         }
         static void Main(string[] Args)
@@ -50,7 +71,7 @@ namespace projet_pizza_v1
                                         { 
                                             new Pizza("4 fromages", 11.5f, true),
                                             new Pizza("indienne", 10.5f, false),
-                                            new Pizza("royale", 13f, false),
+                                            new Pizza("ROYALE", 13f, false),
                                             new Pizza("margherita", 8f, true),
                                             new Pizza("calzone", 12f, false),
                                             new Pizza("complète", 9.5f, false)
