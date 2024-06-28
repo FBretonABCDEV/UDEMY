@@ -55,9 +55,9 @@ namespace projet_pizza_v1
                                             new Pizza("calzone", 12f, false),
                                             new Pizza("complète", 9.5f, false)
                                         };
-            foreach(var element in listePizzas)
+            foreach(var pizza in listePizzas)
             {
-                element.Afficher();
+                pizza.Afficher();
             }
         }
     }
