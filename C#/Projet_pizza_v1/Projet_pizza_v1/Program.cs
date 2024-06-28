@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks.Dataflow;
 
 namespace projet_pizza_v1
 {
@@ -10,13 +11,15 @@ namespace projet_pizza_v1
             string nom;
             float prix;
             bool vegetarienne;
+            List<string> ingredients;
 
             //constructeur
-            public Pizza(string nom, float prix, bool vegetarienne = false)
+            public Pizza(string nom, float prix, bool vegetarienne, List<string> ingredients)
             {
                 this.nom = nom;
                 this.prix = prix;
                 this.vegetarienne = vegetarienne;
+                this.ingredients = ingredients;
             }
 
             public void Afficher()
@@ -28,10 +31,12 @@ namespace projet_pizza_v1
                 }*/
 
                 //alternative notation condition if peu volumineuse
-                string vegan = vegetarienne ? " (V)" : "";
+                string vegan = this.vegetarienne ? " (V)" : "";
                 string nomAfficher = PremiereLettreMajuscule(this.nom);
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
                 Console.WriteLine(nomAfficher + vegan + " - " + prix + "€");
+                Console.WriteLine(String.Join(", ", this.ingredients));
+                Console.WriteLine();
             }
 
             private static string PremiereLettreMajuscule(string s)
@@ -69,12 +74,12 @@ namespace projet_pizza_v1
 
             List<Pizza> listePizzas = new List<Pizza>() 
                                         { 
-                                            new Pizza("4 fromages", 11.5f, true),
-                                            new Pizza("indienne", 10.5f, false),
-                                            new Pizza("ROYALE", 13f, false),
-                                            new Pizza("margherita", 8f, true),
-                                            new Pizza("calzone", 12f, false),
-                                            new Pizza("complète", 9.5f, false)
+                                            new Pizza("4 fromages", 11.5f, true, new List<string>(){"mozzarella", "bleu", "chèvre", "gruyère"}),
+                                            new Pizza("indienne", 10.5f, false, new List<string>(){"mozzarella", "viande hachée", "poulet", "curry", "poivron", "origan"}),
+                                            new Pizza("ROYALE", 13f, false, new List<string>(){"mozzarella", "sauce tomate", "jambon", "champignons", "gruyère"}),
+                                            new Pizza("margherita", 8f, true, new List<string>(){"mozzarella", "tomates", "basilic"}),
+                                            new Pizza("calzone", 12f, false, new List<string>(){"mozzarella", "tomate", "oignon", "émmental rapé", "oeufs"}),
+                                            new Pizza("complète", 9.5f, false, new List<string>(){"mozzarella", "jambon", "oeuf", "fromage"})
                                         };
             foreach(var pizza in listePizzas)
             {
