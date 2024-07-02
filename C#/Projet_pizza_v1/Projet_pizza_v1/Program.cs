@@ -9,7 +9,7 @@ namespace projet_pizza_v1
         {
             //variables d'instance
             string nom;
-            float prix;
+            public float prix { get; init; }
             bool vegetarienne;
             List<string> ingredients;
 
@@ -35,7 +35,18 @@ namespace projet_pizza_v1
                 string nomAfficher = PremiereLettreMajuscule(this.nom);
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
                 Console.WriteLine(nomAfficher + vegan + " - " + prix + "€");
-                Console.WriteLine(String.Join(", ", this.ingredients));
+
+                /*Notation basique
+                List<string> listIngredientsAfficher = new List<string>();
+                foreach(var ingredient in this.ingredients)
+                {
+                    var ingredientAfficher = PremiereLettreMajuscule(ingredient);
+                    listIngredientsAfficher.Add(ingredientAfficher);
+                }
+                Notation alternative*/
+                var listIngredientsAfficher = ingredients.Select(i => PremiereLettreMajuscule(i)).ToList();
+
+                Console.WriteLine(String.Join(", ", listIngredientsAfficher));
                 Console.WriteLine();
             }
 
