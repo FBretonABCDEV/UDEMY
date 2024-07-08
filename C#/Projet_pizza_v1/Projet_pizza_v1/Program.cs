@@ -9,8 +9,8 @@ namespace projet_pizza_v1
         {
             //variables d'instance
             string nom;
-            public float prix { get; set; }
-            bool vegetarienne;
+            public float prix { get; private set; }
+            public bool vegetarienne { get; private set; }
             List<string> ingredients;
 
             //constructeur
@@ -121,6 +121,8 @@ namespace projet_pizza_v1
             Console.WriteLine("         ----------         ");
             Console.WriteLine();
             Console.WriteLine();
+
+            listePizzas = listePizzas.Where(p => p.vegetarienne == true).ToList();
 
             foreach (var pizza in listePizzas)
             {
