@@ -22,6 +22,7 @@ namespace projet_pizza_v1
                 this.ingredients = ingredients;
             }
 
+            //Méthodes
             public void Afficher()
             {
                 /*string vegan = "";
@@ -92,7 +93,13 @@ namespace projet_pizza_v1
                                             new Pizza("calzone", 12f, false, new List<string>(){"mozzarella", "tomate", "oignon", "émmental rapé", "oeufs"}),
                                             new Pizza("complète", 9.5f, false, new List<string>(){"mozzarella", "jambon", "oeuf", "fromage"})
                                         };
-            foreach(var pizza in listePizzas)
+            //Tri prix ordre croissant
+            //listePizzas = listePizzas.OrderBy(p => p.prix).ToList();
+
+            //Tri prix ordre décroissant
+            //listePizzas = listePizzas.OrderByDescending(p => p.prix).ToList();
+
+            foreach (var pizza in listePizzas)
             {
                 pizza.Afficher();
             }
