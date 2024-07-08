@@ -99,6 +99,29 @@ namespace projet_pizza_v1
             //Tri prix ordre décroissant
             //listePizzas = listePizzas.OrderByDescending(p => p.prix).ToList();
 
+            Pizza pizzaMoinsCher = null;
+            Pizza pizzaPlusCher = null;
+            for (int i = 0; i < listePizzas.Count-1; i++)
+            {
+                if (listePizzas[i].prix < listePizzas[i + 1].prix)
+                {
+                    pizzaMoinsCher = listePizzas[i];
+                }
+                if (listePizzas[i].prix > listePizzas[i + 1].prix)
+                {
+                    pizzaPlusCher = listePizzas[i];
+                }
+            }
+
+            Console.Write("La pizza la moins chère est : ");
+            pizzaMoinsCher.Afficher();
+            Console.Write("La pizza la plus chère est : ");
+            pizzaPlusCher.Afficher();
+            Console.WriteLine();
+            Console.WriteLine("         ----------         ");
+            Console.WriteLine();
+            Console.WriteLine();
+
             foreach (var pizza in listePizzas)
             {
                 pizza.Afficher();
