@@ -11,7 +11,7 @@ namespace projet_pizza_v1
             string nom;
             public float prix { get; private set; }
             public bool vegetarienne { get; private set; }
-            List<string> ingredients;
+            public List<string> ingredients { get; private set; }
 
             //constructeur
             public Pizza(string nom, float prix, bool vegetarienne, List<string> ingredients)
@@ -123,7 +123,10 @@ namespace projet_pizza_v1
             Console.WriteLine();
 
             //Afficher uniquement pizzas végétariennes
-            listePizzas = listePizzas.Where(p => p.vegetarienne == true).ToList();
+            //listePizzas = listePizzas.Where(p => p.vegetarienne == true).ToList();
+
+            //Afficher uniquement pizzas qui contiennent de la tomate
+            listePizzas = listePizzas.Where(p => p.ingredients.Where(i => i.ToLower().Contains("tomate")).ToList().Count > 0).ToList();
 
             foreach (var pizza in listePizzas)
             {
