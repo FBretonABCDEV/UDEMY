@@ -9,7 +9,7 @@ namespace projet_pizza_v1
         {
             //variables d'instance
             string nom;
-            public float prix { get; init; }
+            public float prix { get; set; }
             bool vegetarienne;
             List<string> ingredients;
 
