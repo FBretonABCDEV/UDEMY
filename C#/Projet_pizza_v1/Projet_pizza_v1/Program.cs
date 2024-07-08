@@ -122,6 +122,7 @@ namespace projet_pizza_v1
             Console.WriteLine();
             Console.WriteLine();
 
+            //Afficher uniquement pizzas végétariennes
             listePizzas = listePizzas.Where(p => p.vegetarienne == true).ToList();
 
             foreach (var pizza in listePizzas)
