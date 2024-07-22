@@ -1,17 +1,56 @@
 ﻿using System;
-using System.Threading.Tasks.Dataflow;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace projet_pizza_v1
 {
     class Program
     {
+        class PizzaPersonnalisee : Pizza
+        {
+            static int nbPizzasPersonnalisee = 0;
+            public PizzaPersonnalisee() : base("Personnalisee", 5, false, null)
+            {
+                nbPizzasPersonnalisee++;
+                nom = "Personnalisée " + nbPizzasPersonnalisee;
+
+
+                ingredients = new List<string>();
+
+                while (true)
+                {
+                    Console.Write("Rentrez un ingrédient pour la pizza personnalisée " + nbPizzasPersonnalisee + " (ENTER pour terminer) : ");
+                    var ingredient = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(ingredient))
+                    {
+                        break;
+                    }
+                    if (ingredients.Contains(ingredient))
+                    {
+                        Console.WriteLine("ERREUR : Cet ingrédient est déjà présent dans la pizza.");
+                    }
+                    else
+                    {
+                        ingredients.Add(ingredient);
+                        Console.WriteLine(string.Join(", ", ingredients));
+                    }
+
+                    Console.WriteLine();
+                }
+
+
+                prix = 5 + ingredients.Count * 1.5f;
+
+            }
+        }
         class Pizza
         {
             //variables d'instance
-            string nom;
-            public float prix { get; private set; }
+            protected string nom;
+            public float prix { get; protected set; }
             public bool vegetarienne { get; private set; }
-            public List<string> ingredients { get; private set; }
+            public List<string> ingredients { get; protected set; }
 
             //constructeur
             public Pizza(string nom, float prix, bool vegetarienne, List<string> ingredients)
@@ -91,7 +130,9 @@ namespace projet_pizza_v1
                                             new Pizza("ROYALE", 13f, false, new List<string>(){"mozzarella", "sauce tomate", "jambon", "champignons", "gruyère"}),
                                             new Pizza("margherita", 8f, true, new List<string>(){"mozzarella", "tomates", "basilic"}),
                                             new Pizza("calzone", 12f, false, new List<string>(){"mozzarella", "tomate", "oignon", "émmental rapé", "oeufs"}),
-                                            new Pizza("complète", 9.5f, false, new List<string>(){"mozzarella", "jambon", "oeuf", "fromage"})
+                                            new Pizza("complète", 9.5f, false, new List<string>(){"mozzarella", "jambon", "oeuf", "fromage"}),
+                                            new PizzaPersonnalisee(),
+                                            new PizzaPersonnalisee()
                                         };
             //Tri prix ordre croissant
             //listePizzas = listePizzas.OrderBy(p => p.prix).ToList();
