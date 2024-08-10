@@ -8,6 +8,21 @@ namespace programme_fichiers
     {
         static void Main(string[] args)
         {
+            //Ecrire et sauvegarder dans un chemin existant
+            var path1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string fileName4 = "monFichier4.txt";
+            string pathAndFile1 = Path.Combine(path1, fileName4);
+            File.WriteAllText(pathAndFile1, "texte sauvegardé dans un chemin spécifique");
+            Console.WriteLine(pathAndFile1);
+
+            //Créer un répertoire écrire et sauvegarder
+            var path2 = "out";
+            Directory.CreateDirectory(path2);
+            string fileName5 = "monFichier5.txt";
+            string pathAndFile2 = Path.Combine(path2, fileName5);
+            File.WriteAllText(pathAndFile2, "texte sauvegardé dans un répertoire créé");
+            Console.WriteLine(pathAndFile2);
+
             //Ecrire ou écraser le contenu
             string fileName1 = "monFichier.txt";
             File.WriteAllText(fileName1, "Voici mon premier texte que j'écris dans monFichier.txt");
