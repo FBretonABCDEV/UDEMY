@@ -75,6 +75,42 @@ namespace programme_fichiers
             {
                 Console.WriteLine("Une erreur inconnue est arrivée");
             }
+
+            // Gestion de fichier existant ou pas
+            var path3 = "out";
+
+            //le dossier est créer si il n'existe pas
+            if(!Directory.Exists(path3))
+            {
+                Directory.CreateDirectory(path3);
+            }
+            
+            string fileName6 = "monFichier6.txt";
+            string fileName7 = "monFichier6_copie.txt";
+
+            string pathAndFile3 = Path.Combine(path3, fileName6);
+            string pathAndFile4 = Path.Combine(path3, fileName7);
+
+            File.WriteAllText(pathAndFile3, "Le dossier est créer si il n'existe pas, le fichier est créer ou écrasé si il existe.");
+            Console.WriteLine(pathAndFile3);
+
+            if (File.Exists(pathAndFile3))
+            {
+                Console.WriteLine("Le fichier existe déjà, on va écraser son contenu.");
+            }
+            else
+            {
+                Console.WriteLine("Le fichier n'existe pas on va le créer.");
+            }
+
+            //Copier fichier
+            //File.Copy(pathAndFile3, pathAndFile4);
+
+            //Supprimer fichier
+            //File.Delete(pathAndFile4);
+
+            //Renommer ou déplacer dans un nouveau répertoire
+            //File.Move(pathAndFile3, pathAndFile4);
         }
     }
 }
