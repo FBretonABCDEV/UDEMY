@@ -2,12 +2,71 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace Projet_pizza_v2
 {
     class Program
     {
+        //----------------------------------------------------------------------
+        //Getters liste pizzas du code ou d'un fichier
+        static List<Pizza> GetPizzasFromCode()//Les méthodes statiques sont des méthodes que l'on peut appeler sans créer d'instance d'une classe.
+        {
+            List<Pizza> listePizzas = new List<Pizza>()
+                                        {
+                                            new Pizza("4 fromages", 11.5f, true, new List<string>(){"mozzarella", "bleu", "chèvre", "gruyère"}),
+                                            new Pizza("indienne", 10.5f, false, new List<string>(){"mozzarella", "viande hachée", "poulet", "curry", "poivron", "origan"}),
+                                            new Pizza("ROYALE", 13f, false, new List<string>(){"mozzarella", "sauce tomate", "jambon", "champignons", "gruyère"}),
+                                            new Pizza("margherita", 8f, true, new List<string>(){"mozzarella", "tomates", "basilic"}),
+                                            new Pizza("calzone", 12f, false, new List<string>(){"mozzarella", "tomate", "oignon", "émmental rapé", "oeufs"}),
+                                            new Pizza("complète", 9.5f, false, new List<string>(){"mozzarella", "jambon", "oeuf", "fromage"}),
+                                            //new PizzaPersonnalisee(),
+                                            //new PizzaPersonnalisee()
+                                        };
+            return listePizzas;
+        }
+
+        static List<Pizza> GetPizzasFromFile(string fileName)
+        {
+            // 1 - Charger données fichier json
+            string pizzas = null;
+            try
+            {
+                pizzas = File.ReadAllText(fileName);
+            }
+            catch
+            {
+                //Arrêt programme si erreur nom fichier
+                Console.WriteLine("Erreur de lecture du fichier : " + fileName);
+                return null;
+            }
+
+            // 2 - déserialiser -> list<pizza> -> pizza
+            List<Pizza> listePizzas = null;
+            try
+            {
+                listePizzas = JsonConvert.DeserializeObject<List<Pizza>>(pizzas);
+            }
+            catch
+            {
+                //Arrêt programme si erreur données
+                Console.WriteLine("Erreur données JSON invalides");
+                return null;
+            }
+            return listePizzas;
+        }
+        //----------------------------------------------------------------------
+
+        //Générer JSON
+        static void GenerateJsonFile(List<Pizza> listePizzas, string fileName)
+        {
+            // 1 - pizzas -> sérialiser -> json -> string
+            string listePizzasJson = JsonConvert.SerializeObject(listePizzas);
+
+            // 2 - Ecrire dans un fichier texte "pizzas.json"
+            File.WriteAllText(fileName, listePizzasJson);
+        }
         class PizzaPersonnalisee : Pizza
         {
             static int nbPizzasPersonnalisee = 0;
@@ -114,69 +173,16 @@ namespace Projet_pizza_v2
         }
         static void Main(string[] Args)
         {
-            //class Pizza
-            //nom(4 fromages)
-            //prix 11.5
-            //vegetarienne(vrai ou faux)
-            //constructeur
-            //Afficher
-            //4 fromages (V) - 11.5€
-            //créer une liste de pizzas
-            //boucler pour afficher les pizzas
+            var fileName = "jsonPizzas.json";
 
-            List<Pizza> listePizzas = new List<Pizza>()
-                                        {
-                                            new Pizza("4 fromages", 11.5f, true, new List<string>(){"mozzarella", "bleu", "chèvre", "gruyère"}),
-                                            new Pizza("indienne", 10.5f, false, new List<string>(){"mozzarella", "viande hachée", "poulet", "curry", "poivron", "origan"}),
-                                            new Pizza("ROYALE", 13f, false, new List<string>(){"mozzarella", "sauce tomate", "jambon", "champignons", "gruyère"}),
-                                            new Pizza("margherita", 8f, true, new List<string>(){"mozzarella", "tomates", "basilic"}),
-                                            new Pizza("calzone", 12f, false, new List<string>(){"mozzarella", "tomate", "oignon", "émmental rapé", "oeufs"}),
-                                            new Pizza("complète", 9.5f, false, new List<string>(){"mozzarella", "jambon", "oeuf", "fromage"}),
-                                            //new PizzaPersonnalisee(),
-                                            //new PizzaPersonnalisee()
-                                        };
+            // Récupère pizzas du code
+            //var listePizzas = GetPizzasFromCode();
 
-            // 1 - pizzas -> sérialiser -> json -> string
-            string listePizzasJson = JsonConvert.SerializeObject(listePizzas);
+            // Génère fichier JSON -> "jsonPizzas.json" à partir d'une liste -> List<Pizza>
+            //GenerateJsonFile(listePizzas, fileName);
 
-            // 2 - Ecrire dans un fichier texte "pizzas.json"
-            string nameFile = "jsonPizzas.json";
-            File.WriteAllText(nameFile, listePizzasJson);
-
-            //Tri prix ordre croissant
-            //listePizzas = listePizzas.OrderBy(p => p.prix).ToList();
-
-            //Tri prix ordre décroissant
-            //listePizzas = listePizzas.OrderByDescending(p => p.prix).ToList();
-
-            Pizza pizzaMoinsCher = null;
-            Pizza pizzaPlusCher = null;
-            for (int i = 0; i < listePizzas.Count - 1; i++)
-            {
-                if (listePizzas[i].prix < listePizzas[i + 1].prix)
-                {
-                    pizzaMoinsCher = listePizzas[i];
-                }
-                if (listePizzas[i].prix > listePizzas[i + 1].prix)
-                {
-                    pizzaPlusCher = listePizzas[i];
-                }
-            }
-
-            Console.Write("La pizza la moins chère est : ");
-            pizzaMoinsCher.Afficher();
-            Console.Write("La pizza la plus chère est : ");
-            pizzaPlusCher.Afficher();
-            Console.WriteLine();
-            Console.WriteLine("         ----------         ");
-            Console.WriteLine();
-            Console.WriteLine();
-
-            //Afficher uniquement pizzas végétariennes
-            //listePizzas = listePizzas.Where(p => p.vegetarienne == true).ToList();
-
-            //Afficher uniquement pizzas qui contiennent de la tomate
-            listePizzas = listePizzas.Where(p => p.ingredients.Where(i => i.ToLower().Contains("tomate")).ToList().Count > 0).ToList();
+            // Récupère pizzas d'un fichier
+            var listePizzas = GetPizzasFromFile(fileName);
 
             foreach (var pizza in listePizzas)
             {
