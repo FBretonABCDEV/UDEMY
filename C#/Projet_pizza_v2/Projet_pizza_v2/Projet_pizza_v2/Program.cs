@@ -9,8 +9,9 @@ namespace Projet_pizza_v2
 {
     class Program
     {
-        //----------------------------------------------------------------------
-        //Getters liste pizzas du code ou d'un fichier
+        // FONCTIONS
+
+        // Récupérer liste pizzas du code ------------------------------------
         static List<Pizza> GetPizzasFromCode()//Les méthodes statiques sont des méthodes que l'on peut appeler sans créer d'instance d'une classe.
         {
             List<Pizza> listePizzas = new List<Pizza>()
@@ -27,6 +28,7 @@ namespace Projet_pizza_v2
             return listePizzas;
         }
 
+        // Récupérer liste pizzas d'un fichier ------------------------------------
         static List<Pizza> GetPizzasFromFile(string fileName)
         {
             // 1 - Charger données fichier json
@@ -56,9 +58,36 @@ namespace Projet_pizza_v2
             }
             return listePizzas;
         }
-        //----------------------------------------------------------------------
 
-        //Générer JSON
+        // Récupérer liste pizzas d'une URL ------------------------------------
+        static List<Pizza> GetPizzasFromUrl(string url)
+        {
+            var webClient = new WebClient();
+            string pizzasJson = null;
+            try
+            {
+                pizzasJson = webClient.DownloadString(url);
+            }
+            catch
+            {
+                Console.WriteLine("Erreur réseau");
+                return null;
+            }
+
+            List<Pizza> listePizzas = null;
+            try
+            {
+                listePizzas = JsonConvert.DeserializeObject<List<Pizza>>(pizzasJson);
+            }
+            catch
+            {
+                Console.WriteLine("Erreur données JSON invalides");
+                return null;
+            }
+            return listePizzas;
+        }
+
+        //Générer JSON ---------------------------------------------------------
         static void GenerateJsonFile(List<Pizza> listePizzas, string fileName)
         {
             // 1 - pizzas -> sérialiser -> json -> string
@@ -67,6 +96,10 @@ namespace Projet_pizza_v2
             // 2 - Ecrire dans un fichier texte "pizzas.json"
             File.WriteAllText(fileName, listePizzasJson);
         }
+
+        //----------------------------------------------------------------------
+
+        // CLASS
         class PizzaPersonnalisee : Pizza
         {
             static int nbPizzasPersonnalisee = 0;
@@ -171,6 +204,8 @@ namespace Projet_pizza_v2
                 return resultat;
             }
         }
+
+        // FONCTION PRINCIPALE
         static void Main(string[] Args)
         {
             var fileName = "jsonPizzas.json";
@@ -182,12 +217,19 @@ namespace Projet_pizza_v2
             //GenerateJsonFile(listePizzas, fileName);
 
             // Récupère pizzas d'un fichier
-            var listePizzas = GetPizzasFromFile(fileName);
+            //var listePizzas = GetPizzasFromFile(fileName);
 
-            foreach (var pizza in listePizzas)
+            // Récupère pizzas d'une URL
+            var listePizzas = GetPizzasFromUrl("https://codeavecjonathan.com/res/pizzas2.json");
+
+            if(listePizzas != null)
             {
-                pizza.Afficher();
+                foreach (var pizza in listePizzas)
+                {
+                    pizza.Afficher();
+                }
             }
+            
         }
     }
 }
