@@ -6,7 +6,7 @@ namespace Linq
     {
         public static void Main(string[] args)
         {
-            List<string> listeNoms = new List<string> { "Laura", "Francis", "Justine", "Martin", "Emilie", "Raymond", "Sarah", "Kate" };
+            List<string> listeNoms = new List<string> { "Laura", "Francis", "Justine", "Martin", "Emilie", "Raymond", "Sarah", "Kate", "Charles" };
 
             listeNoms = listeNoms.OrderBy(element => element).ToList();
 
